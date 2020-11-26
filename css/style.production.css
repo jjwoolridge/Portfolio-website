@@ -76,6 +76,11 @@ body {
 	color: #061539;
 }
 
+.work-grid {
+	margin: auto;
+	max-width: 1200px;
+}
+
 h1 {
 	font-size: 30px;
 	font-weight: 700;
@@ -188,6 +193,7 @@ button:focus,
 .grid__item {
 	display: inline-block;
 	width: 33%;
+	padding: 10px;
 }
 /*end grid fallback*/
 
@@ -295,6 +301,7 @@ button:focus,
 		width: auto;
 		min-height: auto;
 		margin:0;
+		padding: 10px;
 	}
 
 	.grid__item:last-child {
