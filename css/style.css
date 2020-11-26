@@ -1,0 +1,260 @@
+:root {
+  --primary-color: #357b70;
+  --secondary-color: #e0b354;
+  --background-color: lightgray;
+  --text-color: #061539;
+  --visited-link: #ff7800;
+  --button-color: #489c79;
+  --sun-1: #edc655;
+  --sun-2: #f76414;
+  --grid-color: lightblue;
+  --font-size-text: 16px;
+  --font-size-h1: 30px;
+  --font-size-h2: 24px;
+  --font-size-h3: 18px;
+  --font-weight-text: 400;
+  --font-weight-header: 700;
+}
+
+*{
+	box-sizing: border-box;
+}
+
+body {
+	background-color: var(--background-color);
+ 	font-family: 'Montserrat', sans-serif;
+	font-weight: var(--font-weight-text);
+	font-size: var(--font-size-text);
+	line-height: 1.6;
+}
+
+.profile {
+	max-width: 700px;
+	margin: 0 auto;
+	text-align: left;
+	font-style: oblique;
+	color: var(--primary-color);
+}
+
+.profile__text {
+	flex: 1 1 100px;
+}
+
+.page-header {
+	display: flex;
+	width: 100%;
+	max-width: 1200px;
+	margin: auto;
+	padding: 20px;
+	border-bottom: 2px solid white;
+}
+
+.page-header__item {
+	flex: 0 1 100px;
+}
+
+.page-header__item:last-child {
+	flex-grow: 1;
+	text-align: right;
+}
+
+.page-footer {
+	clear: both;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+.content {
+	max-width: 700px;
+	margin: 0 auto;
+	text-align: center;
+	font-style: normal;
+	color: var(--text-color);
+}
+
+h1 {
+	font-size: var(--font-size-h1);
+	font-weight: var(--font-weight-header);
+}
+
+h2 {
+	font-size: var(--font-size-h2);
+	font-weight: var(--font-weight-header);
+}
+
+h3 {
+	font-size: var(--font-size-h3);
+	font-weight: var(--font-weight-header);
+}
+
+a {
+	color: var(--text-color);
+}
+
+a:visited {
+	color: var(--visited-link);
+}
+
+a:hover, a:focus {
+	/*remove underline from link hover */
+	text-decoration: none;
+}
+
+a:active {
+	color: var(--text-color);
+}
+
+.about-list {
+	list-style-type: none;
+	text-align: center;
+	display: block;
+    padding-inline-start: 0;
+}
+
+button, 
+.button {
+	/* overwrite browser default, reset border */
+	border: none;
+	display: inline-block;
+	font-family: inherit;
+	/*style the button*/
+	background-color: var(--button-color);
+	color: var(--text-color);
+	text-decoration: none;
+	padding: 10px;
+	border-radius: 3px;
+	border-bottom: 4px solid rgba(0,0,0,0.4);
+	transition: 0.3s opacity;
+}
+
+button:hover, 
+button:focus,
+.button:hover,
+.button:focus {
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+.button_secondary {
+	background-color: var(--button-color);
+	color: var(--text-color);
+}
+
+.navigation-list li {
+	display: inline-block;
+	margin-left: 15px;
+}
+
+.navigation-list__item {
+	list-style-type: none;
+}
+
+.navigation-list__item--active {
+	text-decoration: none;
+	font-size:20px;
+}
+
+.profile_portrait {
+	float: left;
+	width: 250px;
+	margin-right: 40px;
+	border-radius: 50%;
+}
+
+/* start grid fallback*/
+.grid__item {
+	display: inline-block;
+	width: 33%;
+}
+/*end grid fallback*/
+
+.sun {
+	animation-name: color-change;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: linear;
+}
+
+.cloud-front {
+	animation: 5s cloud-move infinite alternate linear;
+}
+
+.cloud-back {
+	animation: 20s cloud-move-reverse infinite alternate linear;
+}
+
+@keyframes color-change {
+	from {
+		fill: var(--sun-1);
+	}
+	to {
+		fill: var(--sun-2);
+	}
+}
+
+@keyframes cloud-move {
+	from {
+		transform: translate(0, 50px);
+	}
+	to {
+		transform: translate(200px, 50px);
+	}
+}
+
+@keyframes cloud-move-reverse {
+	transform-origin: 400px 25px;
+	from { 
+		transform: rotate(-25deg);
+	}
+	to {
+		transform: rotate(25deg);
+	}
+}
+
+@supports (display: grid){
+	.grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-gap: 20px;
+		margin: 10px;
+	}
+
+	.grid__item {
+		background-color: var(--grid-color);
+		width: auto;
+		min-height: auto;
+		margin:0;
+	}
+
+	.grid__item:last-child {
+		grid-column: 3/3;
+		grid-row: 1/3;
+	}
+}
+
+@media all and (max-width: 500px) {
+	.grid {
+		grid-template-columns: 1fr;
+	}
+}
+@media all and (min-width: 500px) and (max-width: 750px) {
+	.grid {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media all and (max-width: 750px) {
+	.grid {
+		grid-gap: 10px;
+	}
+	.grid__item:last-child {
+		grid-column: auto/auto;
+		grid-row: auto/auto;
+	}
+	h1 {
+		font-size: 22px;
+	}
+}
+
